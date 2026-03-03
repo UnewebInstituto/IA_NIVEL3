@@ -1,0 +1,70 @@
+Antecedentes:
+
+prompt: Incitador de comandos.
+
+Enunciado de prompts.
+1- Definir el rol que se desea que asuma la IA
+"Asume el rol de experto cocina venezolana,"
+2- Definir el contexto donde debe asumir la tarea a realizar
+"describe el procedimiento para la elaboración de hallacas "
+2.1- considerando por ejemplo ubicación geográfica
+"describe el procedimiento para la elaboración de hallacas andinas "
+"describe el procedimiento para la elaboración de hallacas Orientales "
+"describe el procedimiento para la elaboración de hallacas región del llano "
+3- Indicar la tarea 
+"para 50 comensales"
+4- Establecer restricciones o elementos añadidos
+"incluye una imagen publicitaria del producto final"
+
+Elementos de entrada:
+Texto.
+Sonido.
+Imagenes.
+Video.
+Soporte de diferentes formatos: (txt, word, excel, pdf, otros)
+
+
+Elaboración de chatbots.
+Gema 
+Flow wise
+Tawk To 
+
+
+Prueba con 
+Sitio de plantillas HTML:
+
+https://bootstrapmade.com/
+
+
+Prompt:
+Asume el rol de experto en desarrollo web, toma el archivo anexo y
+realiza las adaptaciones necesarias, para producir un sitio web de restaurant con contenido atractivo para los visitantes. Tomando
+en cuenta la siguientes restricciones, se deben mantener todos los aspectos del diseño, color, tipo de letras,  fuentes, imagenes, vídeos, efectos de tal manera de mantener la experiencia de usuario. Considera la mejores practicas para el SEO (Search Engine Optimization) y da a mi sitio web el nombre "Ricon Gourmet". Genera el código HTML a partir de estas condiciones.
+
+Tawk to
+https://dashboard.tawk.to/login
+
+Api incluida desde Tawk To:
+
+<!--Start of Tawk.to Script-->
+<script type="text/javascript">
+var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+(function(){
+var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+s1.async=true;
+s1.src='https://embed.tawk.to/69a5f650ef658b1c33d0967b/1jio4kabm';
+s1.charset='UTF-8';
+s1.setAttribute('crossorigin','*');
+s0.parentNode.insertBefore(s1,s0);
+})();
+</script>
+<!--End of Tawk.to Script-->
+
+
+
+https://dolarhoy.com/empresas/jensen-huang-ceo-de-nvidia-afirmo-que-el-65-del-pbi-mundial-sera-aumentado-por-la-ia-202510171240
+
+
+
+www.alwaysdata.com
+
