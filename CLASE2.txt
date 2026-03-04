@@ -1,0 +1,21 @@
+ML Y DL
+
+PROMPT:
+Asume el rol de experto en procesamiento de imagenes
+toma el contenido del archivo anexo y extrae en formato
+texto dicho contenido, organiza de manera lógica y estructurada el flujo de acciones alli contenida. Genera 
+el texto correspondiente.
+
+
+A partir del documento anexo genera la imagen de un mapa mental que describa el proceso
+
+https://gemini.google.com/share/92ecbbf426ba
+
+
+Gamma IA:
+- Presentaciones.
+- Sitios Web
+- Contenido de Redes Sociales
+-
+
+Asume el rol de experto en conservación del ambiente en Venezuela, dame un resumen de las politicas en materia de conservación que empresas de manufactura de envases de vidrio para el consumo humano llevan a la practica. Indicando además cuál de estas han tenido mayor receptividad por parte de la comunidad. Toma como referencia publicaciones en redes sociales y sitios web.
