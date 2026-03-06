@@ -1,0 +1,41 @@
+jenny.cartas@gmail.com;
+nninijm@gmail.com;
+
+Inteligencia Artificial para Resultados
+Multimedia:
+- Gemini Banana : Resultado en Imagen.
+- Gemini para video : Pago de Licencia
+
+https://www.freepik.es/app
+ Generación imagen, audio y video.
+
+Fliki ia: Generación de video.
+
+https://openai.com/es-419/index/dall-e-3/
+
+REQUIERE PAGAR LICENCIA
+https://www.midjourney.com/home
+
+
+https://sora.chatgpt.com/explore
+
+
+
+
+Gemini:
+
+1- * Enunciar el prompt.
+2- * Guardar el resultado como un documento PDF.
+3- El documento PDF producido, servirá de insumo
+para que Gemini Canvas, produzca una presentación.
+4- Generar una imagen de mapa de conceptos, acerca
+del resultado del prompt inicial Gemini Banana.
+5- Usando Freekit ai generar una imagen del mapa
+de conceptos, a partir del resultado del prompt.
+6- Usando Fleki ai generar video a partir de la presentación.
+
+
+MERMAI Herramienta para obtener scripts que se convertirán 
+en diagramas.
+
+
