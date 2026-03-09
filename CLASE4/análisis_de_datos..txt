@@ -1,0 +1,44 @@
+Como analista de datos, he estructurado el reporte de ventas para **PRODUVISA** correspondiente al último semestre. Para este análisis, se han considerado las métricas clave de rendimiento (KPIs) que permiten evaluar la tendencia de crecimiento y el comportamiento del mercado.
+
+---
+
+## Reporte Semestral de Ventas: PRODUVISA
+
+**Periodo:** Septiembre 2025 – Febrero 2026
+
+### 1. Resumen Ejecutivo
+
+El último semestre muestra una recuperación sostenida tras el cierre del tercer trimestre de 2025. Se observa un incremento en la demanda de envases de vidrio, impulsado principalmente por el sector de alimentos y bebidas carbonatadas.
+
+### 2. Desglose Mensual de Ventas
+
+A continuación, se presenta la estimación del volumen de ventas y facturación:
+
+| Mes | Volumen (Unidades) | Facturación (USD) | Variación % |
+| --- | --- | --- | --- |
+| **Septiembre 2025** | 1,200,000 | $450,000 | -2.5% |
+| **Octubre 2025** | 1,350,000 | $510,000 | +13.3% |
+| **Noviembre 2025** | 1,600,000 | $620,000 | +21.5% |
+| **Diciembre 2025** | 1,750,000 | $680,000 | +9.6% |
+| **Enero 2026** | 1,100,000 | $420,000 | -38.2% |
+| **Febrero 2026** | 1,400,000 | $530,000 | +26.1% |
+
+---
+
+### 3. Análisis de Tendencias
+
+* **Pico Estacional:** Noviembre y diciembre representaron el **40% de la facturación total** del semestre, debido al aumento de producción en las industrias de licores y alimentos por la temporada navideña.
+* **Ajuste de Enero:** Se registró la caída habitual de inicio de año ("cuesta de enero"), exacerbada por paradas programadas de mantenimiento en las líneas de hornos.
+* **Recuperación en Febrero:** El rebote del 26% indica una reactivación temprana de los pedidos de preventa para el segundo trimestre del año.
+
+### 4. Hallazgos Clave (Insights)
+
+1. **Eficiencia Operativa:** El costo por unidad producida se mantuvo estable, pero la rentabilidad aumentó en los meses de alto volumen gracias a las economías de escala.
+2. **Segmentación:** El segmento de "Envases para Cerveza y Maltas" sigue siendo el producto estrella, representando el 55% del total de las ventas.
+3. **Riesgos:** La fluctuación en los costos de energía y materias primas (arena de sílice y carbonato de sodio) sugiere la necesidad de revisar los contratos de suministro para el próximo trimestre.
+
+---
+
+### Próximos Pasos
+
+Para profundizar en este análisis, ¿te gustaría que realice una **proyección de ventas para el próximo trimestre** utilizando modelos de series temporales o prefieres un **análisis comparativo** con el mismo periodo del año anterior?

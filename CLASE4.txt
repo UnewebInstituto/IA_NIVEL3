@@ -1,0 +1,15 @@
+Has dicho
+Dame la imagen de un perro astronauta al estilo oleo en la superficie de Marte
+
+
+Has dicho
+Genera la misma en estilo manga, caricatura y artístico al estilo Salvador Dali
+
+Crea una imagen de un robot de los años 50 estudiando un libro de Deep Learning en una biblioteca
+futurista, con iluminación neon.
+
+Explica en 150 palabras, usando una metáfora simple (como un chef o un arqueólogo), el proceso de
+Backpropagation en el entrenamiento de una red neuronal profunda
+
+
+Asume el rol de analista de datos, se requieren las ventas de PRODUVISA de los últimos 6 meses

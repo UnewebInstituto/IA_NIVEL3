@@ -1,0 +1,8 @@
+﻿Entrenar Interaxia es como ajustar un motor de carreras en un taller de alta precisión. Imagina que el motor (la red neuronal) ruge, pero no alcanza la velocidad deseada; eso es el error.
+El Backpropagation es el proceso donde el mecánico jefe empieza desde el escape y camina hacia atrás hasta el carburador para encontrar qué falló. No se trata de dar martillazos al azar, sino de usar el gradiente: una herramienta que indica exactamente cuánto apretar cada tuerca para mejorar el rendimiento.
+1. Medición: El cronómetro muestra que perdimos tiempo (función de pérdida).
+2. Rastreo: El mecánico revisa cada pieza desde el final hacia el principio, calculando cuánto contribuyó cada engranaje al fallo.
+3. Ajuste: Con una llave de precisión, ajusta levemente los tornillos (pesos) para que en la siguiente vuelta el motor rinda mejor.
+Así, tras miles de ajustes, Interaxia aprende a correr a la perfección.
+________________
+¿Te gustaría que profundicemos en las matemáticas de este "ajuste de tuercas" o prefieres ver cómo se aplica esto a una arquitectura específica?
