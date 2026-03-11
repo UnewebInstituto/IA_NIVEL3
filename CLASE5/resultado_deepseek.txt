@@ -1,0 +1,83 @@
+Claro, aquí tienes un informe detallado basado en los datos proporcionados, asumiendo el rol de analista de datos.
+
+---
+
+### **Informe de Análisis de Datos de Ventas e Inversión en Mercadeo**
+
+**Preparado por:** Analista de Datos
+**Fecha:** 12 de marzo de 2026
+**Fuente de datos:** `datos.csv` (Periodo: Marzo 2025 - Febrero 2026)
+
+---
+
+### **1. Resumen Ejecutivo**
+
+Se ha realizado un análisis exploratorio de los datos de ventas e inversión en mercadeo correspondientes a un periodo de 12 meses (Marzo 2025 - Febrero 2026). El objetivo fue identificar la tendencia principal, la correlación entre las variables, posibles patrones estacionales y la presencia de anomalías.
+
+**Hallazgos Clave:**
+- **Fuerte Tendencia al Alza:** Se observa un claro y significativo crecimiento en las ventas a lo largo del periodo analizado, especialmente pronunciado hacia finales del año 2025.
+- **Correlación Positiva Fuerte:** Existe una relación directa y muy sólida entre la inversión en mercadeo y las ventas generadas. Un aumento en la inversión se asocia consistentemente con un aumento en las ventas.
+- **Estacionalidad No Concluyente:** Con solo un año de datos, no es posible establecer un patrón estacional definitivo. Sin embargo, se observa un pico de ventas en diciembre, lo cual es un comportamiento común que podría confirmarse con más datos históricos.
+- **Sin Anomalías Significativas:** No se detectaron puntos de datos atípicos o fuera de lo común en la serie. El crecimiento observado es consistente con la tendencia general y la inversión realizada.
+
+---
+
+### **2. Análisis de Tendencia Principal**
+
+Para evaluar la tendencia, se analizó la evolución de las ventas mes a mes.
+
+**Observaciones:**
+- **Crecimiento Sostenido:** Las ventas muestran una tendencia general ascendente. Comenzaron en **45,000 USD** en marzo de 2025 y alcanzaron un máximo de **95,000 USD** en diciembre de 2025.
+- **Punto de Inflexión:** Se identifica un cambio de ritmo en el crecimiento a partir de septiembre de 2025, donde la pendiente de la curva de ventas se vuelve más pronunciada, liderada por un aumento significativo en la inversión en mercadeo en los meses subsiguientes.
+- **Inicio de 2026:** Los primeros dos meses de 2026 (Enero y Febrero) muestran una estabilización en un nivel de ventas superior (por encima de los 54,000 USD) comparado con el inicio de la serie, lo que sugiere que parte del crecimiento se ha consolidado.
+
+**Conclusión de Tendencia:** La tendencia principal es **positiva y acelerada**. El negocio experimentó una fase de crecimiento notable en el último cuatrimestre de 2025.
+
+---
+
+### **3. Análisis de Correlación**
+
+Se calculó la correlación entre las variables `Venta (USD)` e `Inversion_Mercadeo (USD)`.
+
+**Cálculo Aproximado:** Visualmente y mediante un cálculo rápido, se observa que a mayores valores de inversión, le corresponden mayores valores de ventas. Por ejemplo:
+- Inversión baja (~3,200 USD) con ventas bajas (~45,000 USD).
+- Inversión media (~5,500 USD) con ventas medias (~62,000 USD).
+- Inversión alta (~10,000 USD) con ventas máximas (~95,000 USD).
+
+**Coeficiente de Correlación (Estimado):** La relación es tan lineal que el coeficiente de correlación de Pearson sería muy cercano a **+0.98** (en una escala de -1 a +1).
+
+**Conclusión de Correlación:** Existe una **correlación positiva muy fuerte** entre la inversión en mercadeo y las ventas. Esto sugiere que la estrategia de mercadeo está siendo efectiva para impulsar los ingresos. Sin embargo, es crucial recordar que **correlación no implica causalidad**, aunque en este contexto la relación es altamente sugerente.
+
+---
+
+### **4. Análisis de Estacionalidad**
+
+La estacionalidad se refiere a patrones que se repiten en períodos fijos (ej. todos los diciembres). Con solo 12 meses de datos, es difícil separar la estacionalidad de la tendencia de crecimiento.
+
+**Observaciones:**
+- **Pico en Diciembre:** Se registra un pico de ventas muy pronunciado en diciembre de 2025 (95,000 USD). Este es un comportamiento típico en muchos sectores debido a las festividades de fin de año.
+- **Caída Post-Temporada:** Se observa una caída en las ventas de enero de 2026 (54,000 USD) con respecto a diciembre, lo que también es un comportamiento común después de la temporada alta.
+
+**Conclusión de Estacionalidad:** Es **prematuro afirmar un patrón estacional robusto** con un solo ciclo anual. El pico en diciembre es un fuerte indicador de posible estacionalidad, pero se necesitarían datos de años anteriores (ej. diciembre de 2024) para confirmar si este es un patrón recurrente o un evento único impulsado por el crecimiento.
+
+---
+
+### **5. Detección de Anomalías**
+
+Se buscaron puntos de datos que se desviaran significativamente del comportamiento esperado, considerando tanto la tendencia como la relación con la inversión en mercadeo.
+
+**Análisis:**
+- **Crecimiento de Fin de Año:** El incremento de ventas de noviembre (78,000 USD) y diciembre (95,000 USD) podría parecer una anomalía a simple vista. Sin embargo, al examinar la inversión en mercadeo en esos mismos meses (8,500 y 10,000 USD respectivamente), se observa que el aumento de ventas está alineado con el aumento en inversión. Por lo tanto, no se considera una anomalía, sino el resultado de una estrategia de alto rendimiento.
+- **Meses de Inicio:** Los valores de enero y febrero de 2026, aunque inferiores a diciembre, están en línea con la tendencia de crecimiento a largo plazo si se compara con los meses de principios de 2025.
+
+**Conclusión de Anomalías:** **No se detectaron anomalías estadísticas significativas** en el conjunto de datos proporcionado. Todos los puntos son consistentes con la tendencia general del negocio y su relación con el gasto en mercadeo.
+
+---
+
+### **6. Recomendaciones**
+
+1.  **Mantener la Estrategia de Inversión:** Dada la fuerte correlación positiva, se recomienda mantener o incluso optimizar la estrategia de inversión en mercadeo, especialmente los enfoques utilizados en el último trimestre de 2025 que demostraron ser altamente efectivos.
+2.  **Recolectar Más Datos Históricos:** Para un análisis de estacionalidad más preciso, es fundamental recopilar y analizar datos de al menos 2 o 3 años anteriores. Esto permitirá planificar mejor el inventario y las campañas para temporadas altas recurrentes.
+3.  **Monitoreo Continuo:** Implementar un panel de control (dashboard) que monitoree estas variables en tiempo real. Esto ayudará a identificar rápidamente cualquier desviación de la tendencia o la relación ventas-inversión, permitiendo una respuesta ágil ante posibles cambios en el mercado.
+
+---

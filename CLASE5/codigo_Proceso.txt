@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestión de Traslado a APT</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Chosen Palette: Slate (Backgrounds/Text), Blue (Primary/Brand), Red (Alerts/Critical), Green (Success), Amber (Warnings) -->
+    <!-- Application Structure Plan: A dashboard-style SPA with tabbed navigation. The structure includes 4 main views: 'Resumen' (Overview with a chart showing the impact of documentation issues), 'Flujo Operativo' (Interactive timeline for step-by-step exploration), 'Riesgos y Normativas' (Highlighting critical bottlenecks and rules), and 'Plan de Acción' (Strategic improvements). This non-linear structure allows the user to explore the operational flow first, then dive into the specific problems and solutions identified in the source report, prioritizing interactive discovery over passive reading. -->
+    <!-- Visualization & Content Choices: 1. Doughnut Chart (Chart.js via Canvas) to visualize the theoretical impact of undocumented transfers (Inform/Compare). 2. Interactive Timeline (HTML/Tailwind Flex + JS) to explore the 6 process steps without overwhelming the user with text at once (Organize/Inform). 3. Dynamic text panels and metric cards (HTML/JS) to show consequences, risks, and responsibilities associated with the 'Sin Documentación' dilemma (Inform). NO SVG or Mermaid used; relying entirely on Unicode icons and Canvas. -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: #f8fafc; color: #334155; margin: 0; padding: 0; overflow-x: hidden; }
+        .chart-container { position: relative; width: 100%; max-width: 500px; margin-left: auto; margin-right: auto; height: 40vh; max-h-96; }
+        .tab-btn { transition: all 0.3s ease; }
+        .tab-btn.active { border-bottom: 4px solid #3b82f6; color: #1e40af; font-weight: 700; background-color: #eff6ff; }
+        .flow-step { transition: all 0.3s ease; cursor: pointer; }
+        .flow-step:hover { transform: translateY(-5px); box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1); }
+        .flow-step.active { border: 2px solid #3b82f6; background-color: #eff6ff; }
+        .flow-step.critical { border-color: #ef4444; }
+        .flow-step.critical.active { background-color: #fef2f2; border-width: 2px; }
+        @keyframes pulse-red { 0% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.7); } 70% { box-shadow: 0 0 0 10px rgba(239, 68, 68, 0); } 100% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0); } }
+        .pulse-alert { animation: pulse-red 2s infinite; }
+        .hidden-section { display: none; }
+    </style>
+</head>
+<body class="bg-slate-50 min-h-screen flex flex-col">
+
+    <header class="bg-white shadow-sm border-b border-slate-200 sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-center py-4">
+                <div class="flex items-center gap-3">
+                    <span class="text-3xl">🏢</span>
+                    <div>
+                        <h1 class="text-2xl font-bold text-slate-900 tracking-tight">Logística Planta - APT</h1>
+                        <p class="text-sm text-slate-500 font-medium">Panel de Gestión y Trazabilidad Documental</p>
+                    </div>
+                </div>
+                <div class="mt-4 md:mt-0 bg-blue-50 text-blue-700 px-4 py-2 rounded-full text-sm font-bold border border-blue-200">
+                    👤 Asistente de Tráfico de Inventario
+                </div>
+            </div>
+            
+            <nav class="flex overflow-x-auto mt-2" id="main-nav">
+                <button class="tab-btn active px-4 py-3 text-sm font-medium text-slate-600 hover:text-slate-900 whitespace-nowrap" data-target="view-dashboard">📊 Resumen Ejecutivo</button>
+                <button class="tab-btn px-4 py-3 text-sm font-medium text-slate-600 hover:text-slate-900 whitespace-nowrap" data-target="view-flujo">🔄 Flujo Operativo</button>
+                <button class="tab-btn px-4 py-3 text-sm font-medium text-slate-600 hover:text-slate-900 whitespace-nowrap" data-target="view-riesgos">⚠️ Riesgos y Normativas</button>
+                <button class="tab-btn px-4 py-3 text-sm font-medium text-slate-600 hover:text-slate-900 whitespace-nowrap" data-target="view-mejoras">🚀 Plan de Mejora</button>
+            </nav>
+        </div>
+    </header>
+
+    <main class="flex-grow max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 w-full">
+
+        <section id="view-dashboard" class="animate-fade-in">
+            <div class="mb-8">
+                <h2 class="text-2xl font-bold text-slate-800 mb-2">Optimización de Transferencia Planta-Almacén</h2>
+                <p class="text-slate-600 max-w-3xl leading-relaxed">
+                    Esta aplicación interactiva consolida la información crítica del proceso de traslado de Producto Terminado a nuestro Almacén de Producto Terminado (APT). Explore el tablero para comprender el impacto actual de las vulnerabilidades documentales, navegue paso a paso por la secuencia de custodia y revise el plan de mejora estratégica propuesto para el 2024.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <div class="bg-white rounded-xl shadow-sm border border-slate-200 p-6 flex flex-col">
+                    <h3 class="text-lg font-bold text-slate-800 mb-4 text-center">Impacto de Retrasos Documentales (Estimación Mensual)</h3>
+                    <p class="text-sm text-slate-500 mb-6 text-center">Visualización de la proporción de despachos retenidos o con discrepancias en APT debido a documentación incompleta en la zona de tránsito.</p>
+                    
+                    <div class="chart-container flex-grow flex items-center justify-center">
+                        <canvas id="impactChart"></canvas>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div class="bg-blue-600 rounded-xl shadow-md p-6 text-white flex flex-col justify-center">
+                        <span class="text-4xl mb-2">📋</span>
+                        <h4 class="text-lg font-bold mb-1">Proyecto Principal</h4>
+                        <p class="text-blue-100 text-sm">Control de Trazabilidad y Seguridad Documental</p>
+                    </div>
+                    
+                    <div class="bg-red-50 rounded-xl shadow-sm border border-red-200 p-6 flex flex-col justify-center pulse-alert">
+                        <span class="text-4xl mb-2">🛑</span>
+                        <h4 class="text-lg font-bold text-red-800 mb-1">Hallazgo Crítico</h4>
+                        <p class="text-red-600 text-sm">Movimientos "Sin Documentación" paralizan ingresos.</p>
+                        <button class="mt-4 bg-red-600 hover:bg-red-700 text-white text-xs font-bold py-2 px-4 rounded transition-colors" onclick="document.querySelector('[data-target=\'view-riesgos\']').click()">Ver Análisis Detallado</button>
+                    </div>
+
+                    <div class="bg-white rounded-xl shadow-sm border border-slate-200 p-6 sm:col-span-2">
+                        <h4 class="text-md font-bold text-slate-800 mb-2">Directiva Presidencial 2024</h4>
+                        <blockquote class="border-l-4 border-blue-500 pl-4 py-2 italic text-slate-600 bg-slate-50 rounded-r">
+                            "Un proceso sin registro es un proceso inexistente."
+                        </blockquote>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="view-flujo" class="hidden-section animate-fade-in">
+            <div class="mb-8">
+                <h2 class="text-2xl font-bold text-slate-800 mb-2">Línea de Tiempo del Proceso</h2>
+                <p class="text-slate-600 max-w-3xl leading-relaxed">
+                    Interactúe con cada fase de la secuencia de custodia del producto terminado. Haga clic en las tarjetas a continuación para revelar los detalles operativos, responsables y puntos de control de cada paso desde la Planta hasta el APT.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 mb-8" id="flow-container">
+            </div>
+
+            <div class="bg-white rounded-xl shadow-lg border border-slate-200 p-6 min-h-[250px] transition-all" id="flow-detail-panel">
+                <div class="flex items-center justify-center h-full text-slate-400 flex-col gap-4 py-12">
+                    <span class="text-5xl">👆</span>
+                    <p class="text-lg font-medium">Seleccione una etapa en la línea de tiempo superior para ver los detalles.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="view-riesgos" class="hidden-section animate-fade-in">
+             <div class="mb-8">
+                <h2 class="text-2xl font-bold text-slate-800 mb-2">Análisis de Decisión y Normativas</h2>
+                <p class="text-slate-600 max-w-3xl leading-relaxed">
+                    Esta sección desglosa el dilema central de la documentación, analizando sus consecuencias directas en la operación y estableciendo las normativas obligatorias (manejo por sub-lotes) para mitigar el riesgo de pérdida de trazabilidad.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                
+                <div class="lg:col-span-1 space-y-6">
+                    <div class="bg-red-50 border-l-8 border-red-600 rounded-r-xl shadow-sm p-6">
+                        <div class="flex items-center gap-3 mb-3">
+                            <span class="text-2xl">⚠️</span>
+                            <h3 class="text-xl font-bold text-red-900">El Dilema Documental</h3>
+                        </div>
+                        <p class="text-red-800 font-medium mb-4">Movimientos "Sin Documentación"</p>
+                        <p class="text-sm text-red-700 leading-relaxed mb-4">
+                            Se ha identificado que el proceso se detiene o se vuelve vulnerable cuando la unidad física sale de planta antes de que el soporte administrativo esté listo.
+                        </p>
+                        <div class="bg-white p-3 rounded border border-red-200 text-sm">
+                            <strong class="text-slate-800 block mb-1">Acción Mandatoria:</strong>
+                            <span class="text-slate-600">El Asistente de Tráfico tiene la potestad de <strong class="text-red-600">retener la unidad</strong> hasta completar el flujo digital.</span>
+                        </div>
+                    </div>
+
+                    <div class="bg-white rounded-xl shadow-sm border border-slate-200 p-5">
+                        <h4 class="font-bold text-slate-800 mb-3 border-b pb-2">Impacto en Cadena</h4>
+                        <ul class="space-y-3">
+                            <li class="flex gap-2 items-start text-sm">
+                                <span class="text-amber-500 mt-0.5">⏱️</span>
+                                <div><strong class="text-slate-700">Consecuencia:</strong> Retrasos críticos en el ingreso al sistema en APT.</div>
+                            </li>
+                            <li class="flex gap-2 items-start text-sm">
+                                <span class="text-amber-500 mt-0.5">📉</span>
+                                <div><strong class="text-slate-700">Riesgo Operativo:</strong> Pérdida de trazabilidad de lotes y descuadres severos de inventario.</div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="lg:col-span-2 bg-white rounded-xl shadow-sm border border-slate-200 p-6 md:p-8">
+                    <div class="flex items-center gap-3 mb-6">
+                        <span class="text-3xl text-blue-600">📑</span>
+                        <div>
+                            <h3 class="text-2xl font-bold text-slate-800">Normativa: Gestión por Sub-lotes</h3>
+                            <p class="text-slate-500">Reglas para garantizar la trazabilidad total del inventario.</p>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                        <div class="bg-slate-50 rounded-lg p-5 border border-slate-100 hover:shadow-md transition-shadow">
+                            <span class="inline-block bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded-full font-bold tracking-wide mb-3">REQUISITO</span>
+                            <h4 class="text-lg font-bold text-slate-800 mb-2">Segregación</h4>
+                            <p class="text-sm text-slate-600">Cada lote debe ser identificado de forma única desde la planta para evitar mezclas incompatibles en los racks de APT.</p>
+                        </div>
+                        
+                        <div class="bg-slate-50 rounded-lg p-5 border border-slate-100 hover:shadow-md transition-shadow">
+                            <span class="inline-block bg-indigo-100 text-indigo-800 text-xs px-2 py-1 rounded-full font-bold tracking-wide mb-3">CONTROL</span>
+                            <h4 class="text-lg font-bold text-slate-800 mb-2">Pistoleo</h4>
+                            <p class="text-sm text-slate-600">Validación electrónica por escaneo obligatorio en cada punto de cambio de custodia física.</p>
+                        </div>
+
+                        <div class="bg-slate-50 rounded-lg p-5 border border-slate-100 hover:shadow-md transition-shadow">
+                            <span class="inline-block bg-emerald-100 text-emerald-800 text-xs px-2 py-1 rounded-full font-bold tracking-wide mb-3">SOPORTE</span>
+                            <h4 class="text-lg font-bold text-slate-800 mb-2">Registro</h4>
+                            <p class="text-sm text-slate-600">Generación inmediata de ticket de transferencia al llegar a destino, cerrando el ciclo en el sistema.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="view-mejoras" class="hidden-section animate-fade-in">
+             <div class="mb-8">
+                <h2 class="text-2xl font-bold text-slate-800 mb-2">Plan de Mejora Estratégica</h2>
+                <p class="text-slate-600 max-w-3xl leading-relaxed">
+                    Basado en los hallazgos operativos, se establecen los siguientes pasos a implementar para blindar el proceso de traslado. Haga clic en cada iniciativa para conocer su mecanismo de acción.
+                </p>
+            </div>
+
+            <div class="max-w-4xl mx-auto space-y-4" id="mejoras-container">
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-slate-800 text-slate-400 py-6 mt-auto">
+        <div class="max-w-7xl mx-auto px-4 text-center text-sm">
+            Propiedad de la Empresa | Gestión de Procesos 2024
+        </div>
+    </footer>
+
+    <script>
+        const appState = {
+            currentView: 'view-dashboard',
+            activeStep: null,
+            chartInstance: null
+        };
+
+        const flowData = [
+            { id: 1, icon: '🏭', title: 'Zona Tránsito', shortDesc: 'Validación en Planta', fullDesc: 'Validación inicial de Calidad en Planta. Se asegura que el producto cumple con las especificaciones antes de autorizar su movimiento.', status: 'normal' },
+            { id: 2, icon: '🚚', title: 'Cargar Camión', shortDesc: 'Logística física', fullDesc: 'Inicio de logística física y despacho. El personal de planta procede a cargar la unidad asignada para el traslado.', status: 'normal' },
+            { id: 3, icon: '⚠️', title: 'Verificación', shortDesc: 'Revisión documental', fullDesc: '¡PUNTO CRÍTICO! Revisión documental exhaustiva. El Asistente de Tráfico de Inventario debe asegurar que toda la papelería y transferencias en sistema coincidan con la carga física. SIN DOCUMENTACIÓN, NO HAY SALIDA.', status: 'critical' },
+            { id: 4, icon: '🛣️', title: 'Envío a APT', shortDesc: 'Tránsito al almacén', fullDesc: 'Unidad física en tránsito hacia el almacén de producto terminado. Durante esta fase, el sistema debe reflejar el estatus de "En Tránsito".', status: 'normal' },
+            { id: 5, icon: '📱', title: 'Pistoleo', shortDesc: 'Registro en sistema', fullDesc: 'Recepción y registro en sistema mediante dispositivos móviles (pistoleo). Esto asegura la transferencia digital exacta de la custodia de la mercancía.', status: 'success' },
+            { id: 6, icon: '🏢', title: 'Almacenaje', shortDesc: 'Ubicación final', fullDesc: 'Ubicación final en racks de APT. Cierre del proceso logístico donde el inventario queda disponible para despacho final a cliente.', status: 'success' }
+        ];
+
+        const mejorasData = [
+            { id: 'm1', icon: '📝', title: '1. Checklist Digital en Planta', desc: 'Sustituir la revisión visual manual por un formulario estructurado en tablet. El sistema bloqueará automáticamente el proceso de despacho si falta confirmación de documentación adjunta.' },
+            { id: 'm2', icon: '🔔', title: '2. Alertas Automáticas (Tránsito)', desc: 'Implementar notificación en tiempo real, enviada directamente al jefe de almacén APT y supervisores, en el momento exacto en que una unidad sale de planta, generando visibilidad total.' },
+            { id: 'm3', icon: '🏷️', title: '3. Estandarización de Etiquetas', desc: 'Asegurar la calidad de impresión y el formato para que el ticket de producción final sea 100% legible para todos los escáneres del sistema en APT, evitando digitación manual.' }
+        ];
+
+        function initNav() {
+            const buttons = document.querySelectorAll('.tab-btn');
+            buttons.forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    const targetId = e.target.getAttribute('data-target');
+                    
+                    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+                    e.target.classList.add('active');
+                    
+                    document.querySelectorAll('main > section').forEach(sec => sec.classList.add('hidden-section'));
+                    document.getElementById(targetId).classList.remove('hidden-section');
+                    
+                    appState.currentView = targetId;
+                    
+                    if (targetId === 'view-dashboard' && !appState.chartInstance) {
+                        renderChart();
+                    }
+                });
+            });
+        }
+
+        function renderFlowTimeline() {
+            const container = document.getElementById('flow-container');
+            container.innerHTML = '';
+            
+            flowData.forEach(step => {
+                const isCritical = step.status === 'critical';
+                const baseClasses = 'flow-step bg-white p-4 rounded-xl border border-slate-200 flex flex-col items-center text-center';
+                const criticalClasses = isCritical ? 'critical border-red-300' : '';
+                
+                const cardHtml = document.createElement('div');
+                cardHtml.className = `${baseClasses} ${criticalClasses}`;
+                cardHtml.onclick = () => selectFlowStep(step.id, cardHtml);
+                
+                let numColor = 'bg-blue-500';
+                if(step.status === 'critical') numColor = 'bg-red-500 pulse-alert';
+                if(step.status === 'success') numColor = 'bg-emerald-500';
+
+                cardHtml.innerHTML = `
+                    <div class="w-10 h-10 ${numColor} text-white rounded-full flex items-center justify-center font-bold mb-3 text-lg shadow-sm">${step.id}</div>
+                    <div class="text-2xl mb-2">${step.icon}</div>
+                    <strong class="text-sm text-slate-800 mb-1 leading-tight">${step.title}</strong>
+                    <span class="text-xs text-slate-500">${step.shortDesc}</span>
+                `;
+                container.appendChild(cardHtml);
+            });
+        }
+
+        function selectFlowStep(id, element) {
+            document.querySelectorAll('.flow-step').forEach(el => el.classList.remove('active'));
+            element.classList.add('active');
+            
+            const stepData = flowData.find(s => s.id === id);
+            const panel = document.getElementById('flow-detail-panel');
+            
+            let badgeHtml = '';
+            let borderClass = 'border-l-4 border-blue-500';
+            
+            if (stepData.status === 'critical') {
+                badgeHtml = '<span class="bg-red-100 text-red-800 text-xs px-2 py-1 rounded font-bold uppercase tracking-wider">Control Crítico</span>';
+                borderClass = 'border-l-4 border-red-500 bg-red-50';
+            } else if (stepData.status === 'success') {
+                badgeHtml = '<span class="bg-emerald-100 text-emerald-800 text-xs px-2 py-1 rounded font-bold uppercase tracking-wider">Sistema Actualizado</span>';
+                borderClass = 'border-l-4 border-emerald-500';
+            }
+
+            panel.innerHTML = `
+                <div class="animate-fade-in ${borderClass} pl-6 py-2 -ml-6">
+                    <div class="flex items-center gap-4 mb-4">
+                        <div class="text-4xl bg-white p-3 rounded-xl shadow-sm border border-slate-100">${stepData.icon}</div>
+                        <div>
+                            <div class="flex items-center gap-3 mb-1">
+                                <h3 class="text-2xl font-bold text-slate-800">Paso ${stepData.id}: ${stepData.title}</h3>
+                                ${badgeHtml}
+                            </div>
+                            <p class="text-slate-500 font-medium">${stepData.shortDesc}</p>
+                        </div>
+                    </div>
+                    <div class="bg-white rounded-lg p-5 border border-slate-200 mt-4 text-slate-700 leading-relaxed text-lg">
+                        ${stepData.fullDesc}
+                    </div>
+                </div>
+            `;
+        }
+
+        function renderMejoras() {
+            const container = document.getElementById('mejoras-container');
+            mejorasData.forEach(item => {
+                const html = document.createElement('div');
+                html.className = 'bg-white border border-slate-200 rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow cursor-pointer';
+                html.innerHTML = `
+                    <div class="p-5 flex items-start gap-4" onclick="this.nextElementSibling.classList.toggle('hidden-section')">
+                        <span class="text-3xl bg-slate-50 p-2 rounded-lg border border-slate-100">${item.icon}</span>
+                        <div class="flex-grow pt-1">
+                            <h3 class="text-lg font-bold text-slate-800">${item.title}</h3>
+                            <p class="text-sm text-slate-500 mt-1">Clic para expandir detalles operativos.</p>
+                        </div>
+                        <span class="text-slate-400 mt-2">➕</span>
+                    </div>
+                    <div class="hidden-section bg-slate-50 p-5 border-t border-slate-100 text-slate-700">
+                        ${item.desc}
+                    </div>
+                `;
+                container.appendChild(html);
+            });
+        }
+
+        function renderChart() {
+            const ctx = document.getElementById('impactChart').getContext('2d');
+            appState.chartInstance = new Chart(ctx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['Despachos Exitosos (Con Doc)', 'Retenidos/Rechazados (Falta Doc)'],
+                    datasets: [{
+                        data: [82, 18],
+                        backgroundColor: [
+                            '#10b981', 
+                            '#ef4444'  
+                        ],
+                        borderWidth: 0,
+                        hoverOffset: 4
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    cutout: '65%',
+                    plugins: {
+                        legend: {
+                            position: 'bottom',
+                            labels: { padding: 20, font: { family: 'Inter', size: 12 } }
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    return ' ' + context.label + ': ' + context.parsed + '%';
+                                }
+                            },
+                            bodyFont: { family: 'Inter' },
+                            titleFont: { family: 'Inter' }
+                        }
+                    }
+                }
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            initNav();
+            renderChart();
+            renderFlowTimeline();
+            renderMejoras();
+            
+            const style = document.createElement('style');
+            style.textContent = `
+                .animate-fade-in { animation: fadeIn 0.4s ease-out forwards; }
+                @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+            `;
+            document.head.appendChild(style);
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,147 @@
+**Informe de Análisis de Datos de Ventas y Mercadeo**
+Periodo analizado: **Marzo 2025 – Febrero 2026**
+Registros analizados: **12 observaciones mensuales**
+
+---
+
+# 1. Tendencia Principal 📈
+
+El análisis de la serie temporal de **ventas mensuales** muestra una **tendencia general creciente** a lo largo del periodo.
+
+* La pendiente estimada del crecimiento es aproximadamente **+2,218 USD por mes**.
+* Desde marzo de 2025 (**45,000 USD**) hasta diciembre de 2025 (**95,000 USD**) se observa un incremento sostenido.
+* Después del pico de diciembre, las ventas presentan una **corrección en enero de 2026**, situándose en **54,000 USD**, seguida de una ligera recuperación en febrero (**56,500 USD**).
+
+**Interpretación**
+
+El crecimiento general sugiere que la empresa ha experimentado una **expansión progresiva en ventas**, posiblemente impulsada por el aumento en inversión de mercadeo y por factores estacionales de fin de año.
+
+---
+
+# 2. Correlación entre Ventas e Inversión en Mercadeo 🔗
+
+Se calculó el coeficiente de correlación de Pearson entre:
+
+* **Ventas (USD)**
+* **Inversión en Mercadeo (USD)**
+
+Resultado:
+
+**r = 0.99**
+
+**Interpretación**
+
+* Existe una **correlación positiva extremadamente fuerte** entre la inversión en mercadeo y las ventas.
+* Esto indica que **a mayor inversión en marketing, mayor nivel de ventas**.
+* El marketing parece ser un **factor altamente determinante en el comportamiento de las ventas**.
+
+Sin embargo, es importante considerar que **correlación no implica causalidad**, aunque en este caso el comportamiento sugiere una relación directa.
+
+---
+
+# 3. Estacionalidad 📅
+
+Se detecta un patrón estacional importante:
+
+**Incremento significativo en el último trimestre del año**
+
+Valores observados:
+
+| Mes       | Ventas |
+| --------- | ------ |
+| Octubre   | 65,000 |
+| Noviembre | 78,000 |
+| Diciembre | 95,000 |
+
+Posteriormente ocurre una **caída en enero**, típica de mercados donde el consumo se concentra en periodos festivos.
+
+**Interpretación**
+
+La estacionalidad sugiere que:
+
+* Existe **mayor demanda durante el último trimestre del año**.
+* Este comportamiento es consistente con **temporadas comerciales como Navidad o cierre fiscal**.
+
+Esto implica que la empresa debería **incrementar inversión en marketing antes del último trimestre** para maximizar resultados.
+
+---
+
+# 4. Detección de Anomalías ⚠️
+
+Se identifican dos posibles anomalías:
+
+### 1️⃣ Pico extraordinario en diciembre 2025
+
+* Ventas: **95,000 USD**
+* Inversión marketing: **10,000 USD**
+
+Este valor se encuentra **muy por encima del promedio del año**, indicando un **evento excepcional o alta estacionalidad**.
+
+Posibles causas:
+
+* campañas promocionales
+* temporada navideña
+* descuentos o lanzamiento de productos
+
+---
+
+### 2️⃣ Caída abrupta en enero 2026
+
+* Ventas bajan de **95,000 → 54,000 USD**
+
+Esto representa una **disminución cercana al 43%**.
+
+Posibles explicaciones:
+
+* finalización de temporada alta
+* reducción del presupuesto de marketing
+* comportamiento normal del mercado tras las fiestas
+
+---
+
+# 5. Conclusiones Estratégicas 📊
+
+1️⃣ **Crecimiento sostenido**
+Las ventas muestran una tendencia positiva a lo largo del año.
+
+2️⃣ **Marketing altamente influyente**
+La correlación de **0.99** sugiere que la inversión en marketing impacta directamente las ventas.
+
+3️⃣ **Fuerte estacionalidad en fin de año**
+El último trimestre concentra los mayores ingresos.
+
+4️⃣ **Efecto rebote en enero**
+La caída después de diciembre es un comportamiento típico del mercado.
+
+---
+
+# 6. Recomendaciones 💡
+
+**1. Optimizar inversión en marketing**
+
+* Incrementar presupuesto entre **septiembre y diciembre**.
+
+**2. Estrategia post-temporada**
+
+* Implementar campañas en **enero y febrero** para suavizar la caída de ventas.
+
+**3. Análisis regional**
+
+* Evaluar desempeño por región para identificar mercados más rentables.
+
+**4. Modelos predictivos**
+
+* Implementar modelos de **pronóstico de ventas** para anticipar demanda.
+
+---
+
+✅ **Conclusión general:**
+El negocio muestra **crecimiento saludable impulsado por marketing y estacionalidad de fin de año**. Con una planificación estratégica del presupuesto de mercadeo, es posible **optimizar aún más los ingresos anuales**.
+
+---
+
+Si deseas, también puedo generarte:
+
+* 📊 **gráficos de tendencia, correlación y estacionalidad**
+* 📈 **pronóstico de ventas para los próximos 6 meses**
+* 📑 **un informe ejecutivo listo para presentar (PDF o PowerPoint)**.

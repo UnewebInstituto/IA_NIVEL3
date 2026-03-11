@@ -1,0 +1,23 @@
+Asume el rol de analista de datos, genera un archivo en forma CSV, con la siguiente descripción:
+Fecha
+Venta (en USD)
+Inversión de Mercadeo (en USD)
+Región
+Correspondiente al último año de la actividad comercial (por mes) de PRODUVISA.
+
+prompt paso 2
+
+Asume el rol de analista de datos, se anexa archivo para análisis, se espera obtener los siguiente indicadores:
+Tendecia principal.
+Correlación.
+Estacionalidad.
+Anomalías.
+Elabora un informe baso en la información suministrada.
+
+
+Deep Seek: Visión estratégica.
+Chat GPT: Precisión estadística, equipo técnico de BI.
+Gemini: Presentación de alto nivel.
+
+
+https://gemini.google.com/share/ea8d35ee18f4?hl=es_419
