@@ -1,0 +1,55 @@
+DESARROLLO EN PYTHON
+
+[APLIACIÓN EN CUESTIÓN]
+[DEPENDENCIAS         ]
+[ENTORNO VIRTUAL      ] python -m venv .venv
+[INTERPRETE DE PYTHON ] <<<
+[SISTEMA OPERATIVO    ] windows, linux, macosx
+
+
+C:\Users\j.cartas\AppData\Local\Programs\Python\Python313\
+
+path C:\Users\j.cartas\AppData\Local\Programs\Python\Python313\
+
+path C:\Users\n.marchan\AppData\Local\Programs\Python\Python313\
+
+(1) INSTALACIÓN DE ENTORNO VIRTUAL
+            +---- entorno virtual
+            v
+python -m venv .venv <- nombre del entorno virtual
+
+(2) ACTIVACIÓN / DESACTIVACIÓN
+
+>".venv/scripts/activate"
+
+>".venv/scripts/deactivate"
+
+
+   +--- Se encuentra activo
+   v
+(.venv) C:\Users\duque\Documents\Henry Duque\UNEWEB\.PROFESORES\HENRY_DUQUE\IA_NIVEL3>
+
+ACTIVAR EL IDLE DESDE EL ENTORNO VIRTUAL
+python -m idlelib
+
+
+pip: python install package
+
+pip list
+
+pip install python-pptx --force
+
+
+py convertir_pptx.py
+
+
+GEMINI DEVELOPER API 
+
+https://ai.google.dev/
+
+
+(1) Creación del entorno virtual
+python -m venv .venv1
+
+(2) ACTIVACIÓN
+".venv1/Scripts/activate"
